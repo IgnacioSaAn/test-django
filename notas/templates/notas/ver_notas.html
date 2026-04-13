@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'perfil' %}" class="btn btn-secondary">Perfil</a>
+<h1>Notas</h1>
+<a href="{% url 'crear_nota' %}" class="btn btn-primary">Crear nota</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Contenido</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for nota in notas %}
+        <tr>
+            <td>{{ nota.titulo }}</td>
+            <td>{{ nota.contenido }}</td>
+            <td>
+                <a href="{% url 'editar_nota' nota.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'eliminar_nota' nota.id %}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay notas</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form method="get" action="{% url 'buscar_nota_por_titulo' %}">
+    <input type="text" name="titulo" placeholder="Buscar nota">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+{% endblock %}
