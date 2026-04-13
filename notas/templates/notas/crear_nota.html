@@ -7,12 +7,22 @@
     <div class="mb-3">
         <label for="titulo" class="form-label">Titulo</label>
         <input type="text" class="form-control" id="titulo"
-         name="titulo" value="{{ titulo|default:'' }}" required>
+         name="titulo" value="{{ form.titulo.value|default:'' }}">
+         {% if form.titulo.errors %}
+         <div class="alert alert-danger">
+            {{ form.titulo.errors|striptags }}
+         </div>
+         {% endif %}
     </div>
     <div class="mb-3">
         <label for="contenido" class="form-label">Contenido</label>
         <textarea class="form-control" id="contenido"
-         name="contenido" rows="3" required>{{ contenido|default:'' }}</textarea>
+         name="contenido" rows="3">{{ form.contenido.value|default:'' }}</textarea>
+         {% if form.contenido.errors %}
+         <div class="alert alert-danger">
+            {{ form.contenido.errors|striptags }}
+         </div>
+         {% endif %}
     </div>
     <button type="submit" class="btn btn-primary">{% if editar %}Guardar{% else %}Crear{% endif %}</button>
 </form>

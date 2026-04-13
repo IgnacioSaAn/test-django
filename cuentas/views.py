@@ -10,7 +10,7 @@ def registro(request):
         form = RegistroForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('cuentas:login')
     else:
         form = RegistroForm()
     return render(request, 'cuentas/registro.html', {'form': form})
@@ -21,7 +21,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('ver_notas')
+            return redirect('notas:ver_notas')
         else:
             messages.error(request, 'Error al iniciar sesión')
     else:
@@ -30,7 +30,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('cuentas:login')
 
 def ver_perfil(request):
     return render(request, 'cuentas/perfil.html')

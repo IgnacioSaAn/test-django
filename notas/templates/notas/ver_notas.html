@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url 'perfil' %}" class="btn btn-secondary">Perfil</a>
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+        <button type="button" class="btn-close" onClick="this.parentElement.remove()" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+{% endif %}
+<a href="{% url 'cuentas:perfil' %}" class="btn btn-secondary">Perfil</a>
 <h1>Notas</h1>
-<a href="{% url 'crear_nota' %}" class="btn btn-primary">Crear nota</a>
+<a href="{% url 'notas:crear_nota' %}" class="btn btn-primary">Crear nota</a>
 <table class="table">
     <thead>
         <tr>
@@ -14,14 +22,7 @@
     </thead>
     <tbody>
         {% for nota in notas %}
-        <tr>
-            <td>{{ nota.titulo }}</td>
-            <td>{{ nota.contenido }}</td>
-            <td>
-                <a href="{% url 'editar_nota' nota.id %}" class="btn btn-primary">Editar</a>
-                <a href="{% url 'eliminar_nota' nota.id %}" class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
+        {% include 'notas/row.html' %}
         {% empty %}
         <tr>
             <td colspan="3">No hay notas</td>
@@ -29,7 +30,7 @@
         {% endfor %}
     </tbody>
 </table>
-<form method="get" action="{% url 'buscar_nota_por_titulo' %}">
+<form method="get" action="{% url 'notas:buscar_nota_por_titulo' %}">
     <input type="text" name="titulo" placeholder="Buscar nota">
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>

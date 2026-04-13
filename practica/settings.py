@@ -118,6 +118,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'auth.User'
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'ver_notas'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'cuentas:login'
+LOGIN_REDIRECT_URL = 'notas:ver_notas'
+LOGOUT_REDIRECT_URL = 'cuentas:login'

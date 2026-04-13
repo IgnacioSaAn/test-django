@@ -3,5 +3,5 @@
 {% block content %}
 <h1>Perfil</h1>
 <h2>Bienvenido, {{ user.username }}</h2>
-<a href="{% url 'logout' %}" class="btn btn-secondary">Cerrar sesión</a>
+<a href="{% url 'cuentas:logout' %}" class="btn btn-secondary">Cerrar sesión</a>
 {% endblock %}

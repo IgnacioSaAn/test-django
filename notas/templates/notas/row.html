@@ -1,0 +1,8 @@
+<tr>
+    <td>{{ nota.titulo }}</td>
+    <td>{{ nota.contenido }}</td>
+    <td>
+        <a href="{% url 'notas:editar_nota' nota.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'notas:eliminar_nota' nota.id %}" class="btn btn-danger">Eliminar</a>
+    </td>
+</tr>
