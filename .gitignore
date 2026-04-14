@@ -1,0 +1,11 @@
+# Entorno
+.env
+.venv
+env
+venv
+
+# Directorios de Django
+__pycache__
+staticfiles
+db.sqlite3
+staticfiles/
